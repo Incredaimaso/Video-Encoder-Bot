@@ -240,12 +240,13 @@ def onedrive(link: str) -> str:
 
 
 def hxfile(url: str) -> str:
-    """ Hxfile direct link generator
-    Based on https://github.com/zevtyardt/lk21
-             https://github.com/SlamDevs/slam-mirrorbot """
-    bypasser = lk21.Bypass()
-    dl_url = bypasser.bypass_filesIm(url)
-    return dl_url
+    print("DEBUG (hxfile):", url)
+    try:
+        bypasser = lk21.Bypass()
+        return bypasser.bypass_filesIm(url)
+    except Exception as e:
+        print("ERROR in hxfile bypass:", e)
+        raise DirectDownloadLinkException("Invalid or unsupported link")
 
 
 def anonfiles(url: str) -> str:
